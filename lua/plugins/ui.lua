@@ -152,7 +152,103 @@ return {
 
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		enabled = false,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+		ft = "markdown",
+		opts = {
+			-- Use obsidian preset to mimic Obsidian UI
+			preset = "obsidian",
+			-- Render in normal mode, hide in insert mode
+			render_modes = { "n", "c" },
+			-- Anti-conceal: hide rendering on cursor line
+			anti_conceal = {
+				enabled = true,
+			},
+			-- Heading configuration
+			heading = {
+				enabled = true,
+				sign = true,
+				icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+				backgrounds = {
+					"RenderMarkdownH1Bg",
+					"RenderMarkdownH2Bg",
+					"RenderMarkdownH3Bg",
+					"RenderMarkdownH4Bg",
+					"RenderMarkdownH5Bg",
+					"RenderMarkdownH6Bg",
+				},
+			},
+			-- Code block configuration
+			code = {
+				enabled = true,
+				sign = true,
+				style = "full",
+				position = "left",
+				width = "block",
+				min_width = 70,
+				left_pad = 2,
+				right_pad = 2,
+			},
+			-- Checkbox configuration
+			checkbox = {
+				enabled = true,
+				unchecked = {
+					icon = "󰄱 ",
+					highlight = "RenderMarkdownUnchecked",
+				},
+				checked = {
+					icon = "󰱒 ",
+					highlight = "RenderMarkdownChecked",
+				},
+				custom = {
+					todo = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo" },
+					important = { raw = "[!]", rendered = " ", highlight = "RenderMarkdownImportant" },
+					forward = { raw = "[>]", rendered = " ", highlight = "RenderMarkdownForward" },
+					cancelled = { raw = "[~]", rendered = "󰰱 ", highlight = "RenderMarkdownCancelled" },
+				},
+			},
+			-- Bullet point configuration
+			bullet = {
+				enabled = true,
+				icons = { "•", "◦", "▪", "▫" },
+			},
+			-- Callout/blockquote configuration
+			callout = {
+				note = { raw = "[!NOTE]", rendered = "󰋽 Note", highlight = "RenderMarkdownInfo" },
+				tip = { raw = "[!TIP]", rendered = "󰌶 Tip", highlight = "RenderMarkdownSuccess" },
+				important = { raw = "[!IMPORTANT]", rendered = "󰅾 Important", highlight = "RenderMarkdownHint" },
+				warning = { raw = "[!WARNING]", rendered = "󰀪 Warning", highlight = "RenderMarkdownWarn" },
+				caution = { raw = "[!CAUTION]", rendered = "󰳦 Caution", highlight = "RenderMarkdownError" },
+			},
+			-- Link configuration
+			link = {
+				enabled = true,
+				image = "󰥶 ",
+				hyperlink = "󰌹 ",
+			},
+			-- Sign column configuration
+			sign = {
+				enabled = true,
+				highlight = "RenderMarkdownSign",
+			},
+		},
+		keys = {
+			{
+				"<leader>um",
+				"<cmd>RenderMarkdown toggle<cr>",
+				desc = "Toggle Markdown Rendering",
+			},
+			{
+				"<leader>mp",
+				"<cmd>RenderMarkdown preview<cr>",
+				desc = "Preview Markdown",
+			},
+		},
+		config = function(_, opts)
+			require("render-markdown").setup(opts)
+		end,
 	},
 
 	{
