@@ -9,4 +9,7 @@ return {
 			}
 		end,
 	},
+
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
+	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 }
