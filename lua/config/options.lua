@@ -30,7 +30,13 @@ vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.splitkeep = "cursor"
-vim.opt.mouse = ""
+vim.opt.mouse = "nv" -- Enable mouse in normal and visual mode
+
+-- Performance and UX improvements
+vim.opt.updatetime = 250 -- Faster completion and diagnostics (default: 4000)
+vim.opt.timeoutlen = 300 -- Faster which-key popup (default: 1000)
+vim.opt.undofile = true -- Persistent undo across sessions
+vim.opt.signcolumn = "yes" -- Always show signcolumn to prevent text shifting
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

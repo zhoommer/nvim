@@ -81,13 +81,85 @@ Lazy. nvim will automatically install all plugins on first launch.
 The configuration is organized into modular files under `lua/plugins/`:
 
 - **`claude.lua`** - Claude AI integration settings
-- **`coding.lua`** - Code completion and snippets
+- **`coding.lua`** - Code completion, snippets, and autopairs
 - **`colorscheme.lua`** - Theme configuration
 - **`editor.lua`** - Editor behavior and features
-- **`lsp.lua`** - Language server configurations
+- **`git.lua`** - Git integration with gitsigns
+- **`lsp.lua`** - Language server configurations (TypeScript/ts_ls, CSS, HTML, Lua, etc.)
 - **`mcp.lua`** - Model Context Protocol settings
 - **`treesitter.lua`** - Syntax highlighting rules
 - **`ui.lua`** - User interface customizations
+
+## ⌨️ Custom Keybindings
+
+### General Keybindings
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<Space>` | Normal | Leader key |
+| `<Leader>sa` | Normal | Select all text |
+| `<Leader>p` / `<Leader>P` | Normal/Visual | Paste from yank register (doesn't overwrite) |
+| `<Leader>d` / `<Leader>D` | Normal/Visual | Delete without affecting registers |
+| `<Leader>c` / `<Leader>C` | Normal/Visual | Change without affecting registers |
+| `x` | Normal | Delete character without affecting registers |
+
+### Navigation
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<Tab>` | Normal | Next buffer/tab |
+| `<S-Tab>` | Normal | Previous buffer/tab |
+| `<C-j>` | Normal | Next diagnostic |
+| `sh/sk/sj/sl` | Normal | Move between split windows |
+
+### Window Management
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `ss` | Normal | Split window horizontally |
+| `sv` | Normal | Split window vertically |
+| `te` | Normal | Open new tab |
+| `<C-w><left/right/up/down>` | Normal | Resize window |
+
+### Increment/Decrement (dial.nvim)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<C-a>` | Normal | Increment number/date/boolean |
+| `<C-x>` | Normal | Decrement number/date/boolean |
+| `+` | Normal | Increment (alternative) |
+| `-` | Normal | Decrement (alternative) |
+
+### LSP & Code Actions
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<Leader>i` | Normal | Toggle inlay hints |
+| `<Leader>r` | Normal | Replace hex colors with HSL |
+| `:ToggleAutoformat` | Command | Toggle auto-formatting on save |
+
+### Git (gitsigns)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `]h` | Normal | Next hunk |
+| `[h` | Normal | Previous hunk |
+| `<Leader>hs` | Normal/Visual | Stage hunk |
+| `<Leader>hr` | Normal/Visual | Reset hunk |
+| `<Leader>hS` | Normal | Stage buffer |
+| `<Leader>hR` | Normal | Reset buffer |
+| `<Leader>hu` | Normal | Undo stage hunk |
+| `<Leader>hp` | Normal | Preview hunk |
+| `<Leader>hb` | Normal | Blame line |
+| `<Leader>hd` | Normal | Diff this |
+
+### Cowboy Mode 🤠
+
+This configuration includes a "cowboy mode" that discourages repeated use of `h`, `j`, `k`, `l`, `+`, `-` keys without counts. If you press these keys more than 10 times in a row, you'll see a friendly warning. This encourages using more efficient movement commands like:
+- `w/b/e` for word movement
+- `{/}` for paragraph movement  
+- `gg/G` for file start/end
+- `<number>j/k` for counted movements
 
 ## 🎨 Customization
 
