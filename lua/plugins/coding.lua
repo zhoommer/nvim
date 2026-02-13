@@ -6,6 +6,36 @@ return {
 		config = true,
 	},
 
+	-- Auto close brackets, quotes, etc.
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			require("nvim-autopairs").setup({
+				check_ts = true, -- Enable treesitter integration
+				ts_config = {
+					lua = { "string" }, -- Don't add pairs in lua string treesitter nodes
+					javascript = { "template_string" },
+					java = false, -- Don't check treesitter on java
+				},
+			})
+
+			-- If you want to automatically add `(` after selecting a function or method
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
+	},
+
+	-- Better commenting for embedded languages (e.g., JS in Vue, JSX)
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		lazy = true,
+		opts = {
+			enable_autocmd = false,
+		},
+	},
+
 	-- Go forward/backward with square brackets
 	{
 		"nvim-mini/mini.bracketed",

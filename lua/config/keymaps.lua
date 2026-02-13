@@ -1,3 +1,6 @@
+-- Load discipline module for "cowboy mode"
+-- Cowboy mode discourages repeated use of h,j,k,l,+,- without counts
+-- Shows a warning notification when using these keys 10+ times in a row
 local discipline = require("craftzdog.discipline")
 
 discipline.cowboy()
@@ -26,8 +29,8 @@ keymap.set("n", "-", "<C-x>")
 -- Delete a word backwards
 keymap.set("n", "dw", 'vb"_d')
 
--- Select all
-keymap.set("n", "<C-a>", "gg<S-v>G")
+-- Select all (changed from <C-a> to avoid conflict with dial.nvim)
+keymap.set("n", "<Leader>sa", "gg<S-v>G")
 
 -- Save with root permission (not working for now)
 --vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
@@ -41,8 +44,7 @@ keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- New tab
 keymap.set("n", "te", ":tabedit")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+-- Tab navigation is handled by BufferLine in ui.lua
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
